@@ -1,0 +1,88 @@
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card";
+
+const team = [
+  {
+    name: "Engr Hissam Umair",
+    role: "Founder",
+    image: "/founder.jpg", // put this in public folder
+    bio: "John is a visionary entrepreneur who drives innovation and strategy for our company. He has over 15 years of experience in tech leadership and is passionate about building products that make a difference in people's lives.",
+  },
+  {
+    name: "Engr Mubashir",
+    role: "Co-Founder",
+    image: "/cofounder.jpg", // put this in public folder
+    bio: "Jane is our tech expert, focusing on product development and operations. She brings a wealth of knowledge in software engineering and has a keen eye for creating efficient, user-friendly solutions.",
+  },
+];
+
+export default function ProfilePage() {
+  return (
+    <main className="min-h-screen bg-[#0a0a1f] text-white overflow-x-hidden py-24 px-6">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          Our{" "}
+          <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Team
+          </span>
+        </h1>
+        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          Meet the founders driving our company forward and shaping the future.
+        </p>
+      </div>
+
+      {/* Team Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        {team.map((member, index) => (
+          <Card
+            key={index}
+            className="relative overflow-hidden bg-transparent border-gray-800 hover:border-gray-600 transition-all duration-500 hover:scale-[1.02]"
+            style={{
+              background: "rgba(26, 26, 62, 0.5)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <CardContent className="p-6 text-center flex flex-col items-center">
+              {/* Circular Image */}
+              <div className="w-40 h-40 mb-6 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg transition-transform duration-500 hover:scale-105">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <h3 className="text-2xl font-bold mb-2">{member.name}</h3>
+              <p className="text-purple-400 mb-4 font-semibold">
+                {member.role}
+              </p>
+              <p className="text-gray-400 leading-relaxed">{member.bio}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Mission / Why Choose Us Section */}
+      <section className="mt-24 max-w-5xl mx-auto text-center px-4">
+        <h2 className="text-4xl font-bold mb-6">
+          Why Choose{" "}
+          <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Us
+          </span>
+        </h2>
+        <p className="text-gray-400 text-lg mb-4">
+          We combine innovation, experience, and passion to deliver top-notch
+          solutions for our clients. Our team is dedicated to creating products
+          that solve real-world problems efficiently.
+        </p>
+        <p className="text-gray-400 text-lg">
+          With a strong focus on collaboration, creativity, and cutting-edge
+          technology, we ensure that every project exceeds expectations and
+          drives meaningful impact.
+        </p>
+      </section>
+    </main>
+  );
+}
