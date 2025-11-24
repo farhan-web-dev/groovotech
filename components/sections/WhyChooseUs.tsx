@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <CardTitle className="text-2xl mb-3 group-hover:text-blue-400 transition-colors">
+                <CardTitle className="text-2xl text-white mb-3 group-hover:text-blue-400 transition-colors">
                   {feature.title}
                 </CardTitle>
               </CardHeader>

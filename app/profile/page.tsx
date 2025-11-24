@@ -5,15 +5,15 @@ import { Card, CardContent } from "@/components/ui/card";
 const team = [
   {
     name: "Engr Hissam Umair",
-    role: "Founder",
+    role: "Founder & Software Engineer, Groovo Tech",
     image: "/founder.jpg", // put this in public folder
-    bio: "John is a visionary entrepreneur who drives innovation and strategy for our company. He has over 15 years of experience in tech leadership and is passionate about building products that make a difference in people's lives.",
+    bio: "Hissam is a seasoned software engineer and entrepreneur who founded Groovo Tech with a mission to revolutionize the technology landscape. With a strong passion for innovation and a keen eye for detail, Hissam leads the company's strategic direction and drives the development of cutting-edge software solutions. His expertise in software engineering, combined with his leadership skills, enables Groovo Tech to deliver exceptional products and services that exceed client expectations.",
   },
   {
     name: "Engr Mubashir",
-    role: "Co-Founder",
+    role: "Co-Founder & Software Engineer, Groovo Tech",
     image: "/cofounder.jpg", // put this in public folder
-    bio: "Jane is our tech expert, focusing on product development and operations. She brings a wealth of knowledge in software engineering and has a keen eye for creating efficient, user-friendly solutions.",
+    bio: "Mubashir is a skilled software engineer and co-founder of Groovo Tech, bringing a wealth of technical expertise and innovative thinking to the company. With a strong background in software development, Mubashir plays a key role in driving the company's product development and engineering efforts. His collaborative approach and commitment to excellence make him a valuable asset to the Groovo Tech team, ensuring the delivery of high-quality software solutions that meet the evolving needs of clients.",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function ProfilePage() {
                 />
               </div>
 
-              <h3 className="text-2xl font-bold mb-2">{member.name}</h3>
+              <h3 className="text-2xl text-white font-bold mb-2">{member.name}</h3>
               <p className="text-purple-400 mb-4 font-semibold">
                 {member.role}
               </p>

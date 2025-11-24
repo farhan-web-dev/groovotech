@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,6 +16,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -33,9 +37,27 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.sendForm(
+        "service_2zk7tpo",
+        "template_sekxxcg",
+        formRef.current,
+        "BXXp2hdb30VvUmyUF"
+      );
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -81,10 +103,10 @@ export default function Contact() {
               }}
             >
               <CardHeader>
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                <CardTitle className="text-2xl text-white">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="name"
@@ -94,6 +116,7 @@ export default function Contact() {
                     </label>
                     <Input
                       id="name"
+                      name="user_name"
                       type="text"
                       placeholder="Your name"
                       value={formData.name}
@@ -114,6 +137,7 @@ export default function Contact() {
                     </label>
                     <Input
                       id="email"
+                      name="user_email"
                       type="email"
                       placeholder="your@email.com"
                       value={formData.email}
@@ -134,6 +158,7 @@ export default function Contact() {
                     </label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Tell us about your project..."
                       value={formData.message}
                       onChange={(e) =>
@@ -147,9 +172,10 @@ export default function Contact() {
                   <Button
                     type="submit"
                     size="lg"
+                    disabled={isSubmitting}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                     <Send className="ml-2 w-5 h-5" />
                   </Button>
                 </form>
@@ -177,7 +203,7 @@ export default function Contact() {
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 text-lg">Email Us</h3>
+                    <h3 className="font-semibold mb-2 text-white text-lg">Email Us</h3>
                     <p className="text-gray-400 text-sm">
                       hissamyousafzai@gmail.com
                     </p>
@@ -199,7 +225,7 @@ export default function Contact() {
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 text-lg">Call Us</h3>
+                    <h3 className="font-semibold mb-2 text-white text-lg">Call Us</h3>
                     <p className="text-gray-400 text-sm">+923554962991</p>
                   </div>
                 </div>
@@ -219,7 +245,7 @@ export default function Contact() {
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-2 text-lg">Location</h3>
+                    <h3 className="font-semibold mb-2 text-white text-lg">Location</h3>
                     <p className="text-gray-400 text-sm">Remote</p>
                   </div>
                 </div>
@@ -234,7 +260,7 @@ export default function Contact() {
               }}
             >
               <CardContent className="p-6">
-                <h3 className="font-semibold mb-4 text-lg">Follow Us</h3>
+                <h3 className="font-semibold mb-4 text-white text-lg">Follow Us</h3>
                 <div className="flex gap-4">
                   <a
                     href="https://www.linkedin.com/search/results/all/?heroEntityKey=urn%3Ali%3Aorganization%3A109731334&keywords=Groovo%20Tech"

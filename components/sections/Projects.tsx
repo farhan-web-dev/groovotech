@@ -134,7 +134,7 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-2xl text-white font-bold mb-3 group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-gray-400 mb-6 leading-relaxed">
